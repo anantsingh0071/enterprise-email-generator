@@ -1,0 +1,21 @@
+Analyze the following insurance record.
+
+Policy Number:
+{policy_number}
+
+Insurance Company:
+{insurer_name}
+
+Insurance Company Email:
+{insurer_email}
+
+Broker Name:
+{broker_name}
+
+Broker ID:
+{broker_id}
+
+Broker Email:
+{broker_email}
+
+Return the extracted business context.

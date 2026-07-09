@@ -1,0 +1,22 @@
+Return ONLY the completed email.
+
+The email must contain:
+
+- From
+- To
+- Subject
+- Date
+- Greeting
+- Body
+- Closing
+- Signature
+
+The email should be ready for enterprise review.
+
+Do not explain your reasoning.
+
+Do not use markdown.
+
+Do not wrap the output inside code blocks.
+
+Do not include any additional comments before or after the email.

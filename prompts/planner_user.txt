@@ -1,0 +1,9 @@
+Create an email blueprint using the following business context.
+
+Business Context
+
+{business_context}
+
+Generate a professional email plan.
+
+Return JSON only.

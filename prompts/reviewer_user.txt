@@ -1,0 +1,50 @@
+Review the following insurance email.
+
+Your responsibilities are:
+
+- Ensure the email is professional.
+- Correct grammar and spelling.
+- Improve readability and sentence flow.
+- Maintain a formal enterprise communication style.
+- Preserve all factual information.
+- Do not invent any information.
+- Do not remove valid information.
+
+Generated Email
+
+{generated_email}
+
+Using the reviewed email, extract the following fields:
+
+- Sender Name
+- Sender Email
+- Recipient Name
+- Recipient Email
+- Subject
+- Email Body
+
+Return ONLY valid JSON.
+
+Do not explain anything.
+
+Do not use markdown.
+
+Do not wrap the output inside code fences.
+
+The output must exactly match this schema:
+
+{{
+    "from_name": "",
+    "from_email": "",
+    "to_name": "",
+    "to_email": "",
+    "subject": "",
+    "body": ""
+}}
+
+Rules:
+
+- The "body" field must contain only the greeting, email body, closing, and signature.
+- Do not include From, To, Subject, or Date inside the "body".
+- Preserve all business information.
+- Output valid JSON only.
