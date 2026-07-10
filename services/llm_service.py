@@ -24,6 +24,9 @@ class LLMService:
     """
 
     def __init__(self) -> None:
+        """
+        Initialize the Gemini client.
+        """
 
         if not GOOGLE_API_KEY:
             raise ValueError(
@@ -43,16 +46,47 @@ class LLMService:
     ) -> str:
         """
         Generate a response from Gemini.
+
+        Parameters
+        ----------
+        system_prompt : str
+            Instructions for the model.
+
+        user_prompt : str
+            User input.
+
+        Returns
+        -------
+        str
+            Generated response.
         """
 
-        response = self.client.models.generate_content(
-            model=self.model,
-            config={
-                "system_instruction": system_prompt,
-                "temperature": LLM_TEMPERATURE,
-            },
-            contents=user_prompt,
-        )
+        if not system_prompt.strip():
+            raise ValueError(
+                "System prompt cannot be empty."
+            )
+
+        if not user_prompt.strip():
+            raise ValueError(
+                "User prompt cannot be empty."
+            )
+
+        try:
+
+            response = self.client.models.generate_content(
+                model=self.model,
+                config={
+                    "system_instruction": system_prompt,
+                    "temperature": LLM_TEMPERATURE,
+                },
+                contents=user_prompt,
+            )
+
+        except Exception as error:
+
+            raise RuntimeError(
+                f"Failed to generate response from Gemini: {error}"
+            ) from error
 
         if not response.text:
             raise ValueError(

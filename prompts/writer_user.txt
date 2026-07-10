@@ -1,22 +1,37 @@
-Return ONLY the completed email.
+Business Context
+
+{business_context}
+
+Email Blueprint
+
+{email_blueprint}
+
+Using the business context and email blueprint, write one professional insurance email.
+
+Requirements:
+
+- Use only the information provided.
+- Maintain a professional enterprise tone.
+- Keep the email concise and clear.
+- Generate a meaningful subject.
+- Include a professional greeting.
+- Include a well-structured body.
+- End with an appropriate closing and signature.
 
 The email must contain:
 
-- From
-- To
-- Subject
-- Date
-- Greeting
-- Body
-- Closing
-- Signature
+From
+To
+Subject
+Greeting
+Body
+Closing
+Signature
 
-The email should be ready for enterprise review.
+Do not invent facts.
 
-Do not explain your reasoning.
+Return only the completed email.
 
 Do not use markdown.
 
-Do not wrap the output inside code blocks.
-
-Do not include any additional comments before or after the email.
+Do not wrap the output inside code fences.

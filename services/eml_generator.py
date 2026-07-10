@@ -20,7 +20,10 @@ class EMLGenerator:
 
     def __init__(self) -> None:
 
-        self.output_dir = Path("output")
+        self.output_dir = (
+            Path(__file__).parent.parent
+            / "output"
+        )
 
         self.output_dir.mkdir(
             exist_ok=True
@@ -55,6 +58,22 @@ class EMLGenerator:
             Path to generated .eml file.
         """
 
+        required_fields = [
+            "from_name",
+            "from_email",
+            "to_name",
+            "to_email",
+            "subject",
+            "body",
+        ]
+
+        for field in required_fields:
+
+            if field not in email_data:
+                raise KeyError(
+                    f"Missing required field: {field}"
+                )
+
         message = EmailMessage()
 
         message["From"] = (
@@ -77,12 +96,25 @@ class EMLGenerator:
 
         message["MIME-Version"] = "1.0"
 
-        message.set_content(
-            email_data["body"]
-        )
+        # --------------------------------------------------
+        # Normalize body formatting
+        # --------------------------------------------------
+
+        body = str(email_data["body"])
+
+        # Convert literal escaped newlines into real newlines
+        body = body.replace("\\r\\n", "\n")
+        body = body.replace("\\n", "\n")
+
+        # Normalize line endings
+        body = body.replace("\r\n", "\n")
+        body = body.strip()
+
+        message.set_content(body)
 
         output_path = (
-            self.output_dir / filename
+            self.output_dir
+            / filename
         )
 
         with open(
@@ -91,7 +123,7 @@ class EMLGenerator:
         ) as file:
 
             file.write(
-                bytes(message)
+                message.as_bytes()
             )
 
         return output_path

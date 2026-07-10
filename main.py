@@ -1,7 +1,7 @@
 """
 main.py
 --------------------------------------------------
-Entry point for the Email Generator.
+Entry point for the Enterprise Email Generator.
 """
 
 from generators.email_generator import EmailGenerator
@@ -9,24 +9,44 @@ from services.dataset_service import DatasetService
 from services.eml_generator import EMLGenerator
 
 
-def main():
+def main() -> None:
+    """
+    Execute the complete email generation workflow.
+    """
 
-    dataset = DatasetService()
+    try:
 
-    record = dataset.get_record(index=0)
+        # Load one insurance record
+        dataset = DatasetService()
 
-    generator = EmailGenerator()
+        record = dataset.get_record(index=0)
 
-    email_data = generator.generate_email(record)
+        # Generate the email
+        generator = EmailGenerator()
 
-    eml_generator = EMLGenerator()
+        email_data = generator.generate_email(
+            record
+        )
 
-    file_path = eml_generator.save(
-        email_data=email_data,
-        filename=f"{record['policy_number']}.eml",
-    )
+        # Save as .eml
+        eml_generator = EMLGenerator()
 
-    print(f"Email saved to: {file_path}")
+        file_path = eml_generator.save(
+            email_data=email_data,
+            filename=f"{record['policy_number']}.eml",
+        )
+
+        print("\n===================================")
+        print("Email generated successfully.")
+        print(f"Saved to: {file_path}")
+        print("===================================\n")
+
+    except Exception as error:
+
+        print("\n===================================")
+        print("Email generation failed.")
+        print(error)
+        print("===================================\n")
 
 
 if __name__ == "__main__":

@@ -1,21 +1,37 @@
 Analyze the following insurance record.
 
-Policy Number:
-{policy_number}
+Insurance Record
 
-Insurance Company:
-{insurer_name}
+{insurance_record}
 
-Insurance Company Email:
-{insurer_email}
+Your objectives are:
 
-Broker Name:
-{broker_name}
+1. Identify the insurance company.
+2. Identify the broker.
+3. Identify the customer.
+4. Analyze the policy details.
+5. Analyze the incident details.
+6. Analyze the claim information.
+7. Analyze the vehicle information.
+8. Identify whether fraud has been reported.
+9. Identify any important business facts that should be included in an insurance email.
 
-Broker ID:
-{broker_id}
+Create a concise business summary that can be used by another AI agent to generate a professional insurance email.
 
-Broker Email:
-{broker_email}
+The summary should include:
 
-Return the extracted business context.
+- Insurance Company
+- Broker Information
+- Customer Information
+- Policy Details
+- Incident Details
+- Claim Details
+- Vehicle Details
+- Fraud Status
+- Required Business Action
+
+Do not invent information.
+
+Only use information present in the insurance record.
+
+Return only the business summary.

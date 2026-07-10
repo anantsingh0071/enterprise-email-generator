@@ -102,12 +102,11 @@ class EmailGenerator:
         )
 
         user_prompt = user_prompt.format(
-            policy_number=record.get("policy_number", ""),
-            insurer_name=record.get("insurer_name", ""),
-            insurer_email=record.get("insurer_email", ""),
-            broker_name=record.get("broker_name", ""),
-            broker_id=record.get("broker_id", ""),
-            broker_email=record.get("broker_email", ""),
+            insurance_record=json.dumps(
+                record,
+                indent=4,
+                default=str,
+           )
         )
 
         return self.llm.generate(
@@ -234,13 +233,37 @@ class EmailGenerator:
             reviewed_email = reviewed_email[:-3].strip()
 
         try:
-            return json.loads(reviewed_email)
+            email_json = json.loads(reviewed_email)
+
+            required_fields = [
+                "from_name",
+                "from_email",
+                "to_name",
+                "to_email",
+                "subject",
+                "body",
+            ]
+
+            for field in required_fields:
+                if field not in email_json:
+                    raise ValueError(
+                        f"Missing required field: {field}"
+                    )
+
+            email_json["body"] = (
+                email_json["body"]
+                .replace("\\r\\n", "\n")
+                .replace("\\n", "\n")
+                .strip()
+            )
+
+            return email_json
 
         except json.JSONDecodeError as error:
 
-            print("\n========= INVALID JSON =========")
+            print("\n========== INVALID REVIEWER OUTPUT ==========")
             print(reviewed_email)
-            print("===============================\n")
+            print("=============================================\n")
 
             raise ValueError(
                 "Reviewer prompt returned invalid JSON."

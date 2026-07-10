@@ -1,9 +1,24 @@
-Create an email blueprint using the following business context.
+You are provided with the following business context generated from an insurance record.
 
 Business Context
 
 {business_context}
 
-Generate a professional email plan.
+Your task is to create a structured email blueprint.
 
-Return JSON only.
+The blueprint should include:
+
+1. Purpose of the email
+2. Key business points to communicate
+3. Professional tone
+4. Information that should appear in the subject
+5. Logical flow of the email
+6. Closing objective
+
+Do not write the email.
+
+Do not invent information.
+
+Only create a structured plan that another AI agent can use to write the final email.
+
+Return only the email blueprint.
